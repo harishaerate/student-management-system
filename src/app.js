@@ -12,8 +12,12 @@ app.use(express.json());
 require("dotenv").config();
 
 const loginRouter = require("./routes/login");
+const adminRouter = require("./routes/admin");
+const addTasks = require("./routes/admin");
 
 app.use("/", loginRouter);
+app.use("/", adminRouter);
+app.use("/", addTasks);
 
 
 connectDB()

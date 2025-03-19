@@ -11,31 +11,27 @@ loginRouter.post("/api/admin/login", async (req, res) => {
     const { email, password } = req.body;
 
     if (email && password) {
-      if (
-        email === adminEmail &&
-        password === adminPassword
-      ) {
+      if (email === adminEmail && password === adminPassword) {
         res
           .status(200)
-          .json({ status: 1, message: "Admin logged in successfully" });
-      }else{
+          .json({ code: 1, message: "Admin logged in successfully" });
+      } else {
         res.status(200).json({
-            status: 0,
-            message: "Invalid admin credentials",
-          });
+          code: 0,
+          message: "Invalid admin credentials",
+        });
       }
     } else {
-        res.status(400).send({status: 0, message: "Bad Request"});
+      res.status(400).send({ code: 0, message: "Bad Request" });
     }
   } catch (err) {
-    res.status(400).send("ERROR : " + err.message);
+    res.status(400).send({ code: 0, message: err.message });
   }
 });
 
 //This API helps students to login
 loginRouter.post("/student/login", async (req, res) => {
   try {
-    
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
