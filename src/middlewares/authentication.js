@@ -5,17 +5,12 @@ const authenticateStudent = async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
   
-      console.log("authHeader", authHeader);
-  
       if (!authHeader || !authHeader.startsWith("Basic ")) {
         return res.status(401).json({ code: 0, message: "Missing or invalid authorization header" });
       }
 
       const credentials = authHeader.split(" ")[1];
-      console.log("credentials", credentials);
       const [email, password] = credentials.split(":");
-      console.log("email", email);
-      console.log("password", password);
   
       if (!email || !password) {
         return res.status(401).json({ code: 0, message: "Invalid authentication format" });
@@ -26,7 +21,6 @@ const authenticateStudent = async (req, res, next) => {
         return res.status(404).json({ code: 0, message: "Student not found" });
       }
   
-      console.log("student.password", student.password);
       const isMatch = await bcrypt.compare(password, student.password);
       if(!isMatch){
         return res.status(401).json({ code: 0, message: "Invalid credentials" });

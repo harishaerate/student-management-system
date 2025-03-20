@@ -28,15 +28,12 @@ studentRouter.get(
   async (req, res) => {
     try {
       const { title } = req.query;
-      console.log(title);
 
       if (!title) {
         return res
           .status(400)
           .json({ code: 0, message: "Task title is required" });
       }
-
-      console.log("req.student", req.student);
       
       const tasks = req.student.tasks.filter((task) => task.title === title);
 

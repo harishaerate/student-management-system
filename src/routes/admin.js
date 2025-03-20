@@ -26,7 +26,6 @@ adminRouter.post("/api/admin/addStudents", async (req, res) => {
       });
 
       const data = await student.save();
-      console.log("data --> ", data);
       res
         .status(200)
         .json({ code: 1, message: "Student added.", result: data });
