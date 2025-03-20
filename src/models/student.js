@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+const TasksSchema = require("./tasks");
+
 const StudentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: {
@@ -25,6 +27,7 @@ const StudentSchema = new mongoose.Schema({
       }
     },
   },
+  tasks: [TasksSchema]
 });
 
 module.exports = mongoose.model("Student", StudentSchema);
