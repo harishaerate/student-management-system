@@ -22,12 +22,20 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate(value) {
-      if (!validator.isStrongPassword(value)) {
+      const result = validator.isStrongPassword(value, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      });
+      console.log(`Password: ${value}, Validation Result: ${result}`);
+      if (!result) {
         throw new Error("Enter a Strong Password: " + value);
       }
     },
   },
-  tasks: [TasksSchema]
+  tasks: [TasksSchema],
 });
 
 module.exports = mongoose.model("Student", StudentSchema);
