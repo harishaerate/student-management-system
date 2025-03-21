@@ -26,65 +26,69 @@ Student Interface
     1. Clone the repository using - git clone ""
     2. cd student-management-system
     3. npm run build (This will install all the packages required as well as starting the application)
+    4. Create a .env file in the root folder with below data,
+    ADMIN_EMAIL="admin@admin.com"
+    ADMIN_PASSWORD="admin"
+    DB_CONNECTION_SECRET="mongodb+srv://<<USERNAME>>:<<PASSWORD>>@cluster0.nnhcb4k.mongodb.net/student_management"
+    PORT = <<"PORT">>
 
 # Admin APIs
 
 --> Import the below curL commands to postman in order to test the admin backend api services
 
 1. Admin Login API
-curl --location 'http://localhost:5002/api/admin/login' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "email": "admin@admin.com",
-    "password": "admin"
-}'
+   curl --location 'http://localhost:5002/api/admin/login' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "email": "admin@admin.com",
+   "password": "admin"
+   }'
 
 2. Admin Add Students API -  
-curl --location 'http://localhost:5002/api/admin/addStudents' \
---header 'Content-Type: application/json' \
---data-raw '{
-"name": "Harish",
-"email": <<EMAIL>>,
-"department": "ECE",
-"password": <<PASSWORD>>,
-"tasks": [""]
-}'
+   curl --location 'http://localhost:5002/api/admin/addStudents' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name": "Harish",
+   "email": <<EMAIL>>,
+   "department": "ECE",
+   "password": <<PASSWORD>>,
+   "tasks": [""]
+   }'
 
 3. Admin Add Tasks API
-curl --location 'http://localhost:5002/api/admin/addTasks' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "student_email": "harishaerate@gmail.com",
-    "title": "Build Student Management System",
-    "description": "Create APIs for student management using Express.js and MongoDB.",
-    "due_date": "2025-03-22",
-    "status": "pending"
-}'
-
+   curl --location 'http://localhost:5002/api/admin/addTasks' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "student_email": "harishaerate@gmail.com",
+   "title": "Build Student Management System",
+   "description": "Create APIs for student management using Express.js and MongoDB.",
+   "due_date": "2025-03-22",
+   "status": "pending"
+   }'
 
 # Student APIs
 
 --> Import the below curL commands to postman in order to test the student backend api services
 
 1. Student Login API
-curl --location --request POST 'http://localhost:5002/student/login' \
---header 'email: <<STUDENT_EMAIL>>' \
---header 'password: <<PASSWORD>>'
+   curl --location --request POST 'http://localhost:5002/student/login' \
+   --header 'email: <<STUDENT_EMAIL>>' \
+   --header 'password: <<PASSWORD>>'
 
 2. Student View Tasks API
-curl --location 'http://localhost:5002/api/student/view_tasks' \
---header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>' \
---data ''
+   curl --location 'http://localhost:5002/api/student/view_tasks' \
+   --header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>' \
+   --data ''
 
 3. Student Task Status API
-curl --location 'http://localhost:5002/api/student/task_status?title=Build%20Student%20Management%20System' \
---header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>'
+   curl --location 'http://localhost:5002/api/student/task_status?title=Build%20Student%20Management%20System' \
+   --header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>'
 
 4. Student Update Task Status API
-curl --location 'http://localhost:5002/api/student/update_task' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>' \
---data '{
-           "title": <<TASK_TITLE>>,
-           "new_status": <<STATUS_TO_UPDATE>>
-}'
+   curl --location 'http://localhost:5002/api/student/update_task' \
+   --header 'Content-Type: application/json' \
+   --header 'Authorization: Basic <<STUDENT_EMAIL>>:<<PASSWORD>>' \
+   --data '{
+   "title": <<TASK_TITLE>>,
+   "new_status": <<STATUS_TO_UPDATE>>
+   }'
